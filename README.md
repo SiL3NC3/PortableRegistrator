@@ -13,7 +13,10 @@ This will allow you to directly open weblinks (http/https URLs) with the portabl
 
 On the first start a configuration file is being generated to provide default settings for the AppTypes.
 
-`<?xml version="1.0"?>
+The default available AppType are:
+
+```
+<?xml version="1.0"?>
 <Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <AppTypes>
     <AppType>
@@ -47,7 +50,8 @@ On the first start a configuration file is being generated to provide default se
       </URLAssociations>
     </AppType>
   </AppTypes>
-</Configuration>`
+</Configuration>
+```
 
 Have fun and enjoy.
 
