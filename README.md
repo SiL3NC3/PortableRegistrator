@@ -92,6 +92,11 @@ Possibly not every software will work, but give it a shot and share your experie
 Have fun and enjoy.
 
 
+#### CONTRUBUTION:
+Please post your custom configs for implementing more standard apps under issues, so I can add them to the repo.
+Thank you, guys.
+
+
 #### CREDITS:
 
 ###### App Icon:
