@@ -100,3 +100,6 @@ Backlink: http://www.wallpaperfx.com
 
 ###### Inspired by:
 https://www.winhelponline.com/blog/register-firefox-portable-with-default-programs-in-vista/
+
+###### German tutorial by DeskModder.de: (Thank you!)
+https://www.deskmodder.de/blog/2022/04/01/portable-registrator-portable-browser-mail-oder-andere-programme-als-standard-setzen-koennen
