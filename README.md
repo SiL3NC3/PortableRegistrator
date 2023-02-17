@@ -95,6 +95,11 @@ After manual editing the Reset-Button will now also reloads the Configuration fi
 Have fun and enjoy.
 
 
+#### CONTRIBUTION:
+Please post your custom configs for implementing more standard apps under issues, so I can add them to the repo.
+Thank you, guys.
+
+
 #### CREDITS:
 
 ###### App Icon:
@@ -103,3 +108,6 @@ Backlink: http://www.wallpaperfx.com
 
 ###### Inspired by:
 https://www.winhelponline.com/blog/register-firefox-portable-with-default-programs-in-vista/
+
+###### German tutorial by DeskModder.de: (Thank you!)
+https://www.deskmodder.de/blog/2022/04/01/portable-registrator-portable-browser-mail-oder-andere-programme-als-standard-setzen-koennen
