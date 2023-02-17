@@ -89,6 +89,9 @@ At best copy a full AppType section and edit it to your needs.
 
 Possibly not every software will work, but give it a shot and share your experience.
 
+You can use the ADD Button to easily add new Program-Types.
+After manual editing the Reset-Button will now also reloads the Configuration file and repopulate the Program-Types.
+
 Have fun and enjoy.
 
 

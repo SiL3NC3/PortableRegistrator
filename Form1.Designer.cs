@@ -37,7 +37,7 @@ namespace PortableRegistrator
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbxProgramName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelPortableSuffix = new System.Windows.Forms.Label();
             this.cbRegisteredPortables = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,15 +59,18 @@ namespace PortableRegistrator
             this.lblPropertiesParameter = new System.Windows.Forms.Label();
             this.lblOpenParameters = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbRemoveSuffix = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.llGithub = new System.Windows.Forms.LinkLabel();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnRemoveAppType = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,7 +82,7 @@ namespace PortableRegistrator
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 57);
+            this.label1.Location = new System.Drawing.Point(11, 207);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 21);
@@ -88,7 +91,8 @@ namespace PortableRegistrator
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(578, 244);
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.Location = new System.Drawing.Point(613, 244);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(124, 34);
@@ -99,8 +103,9 @@ namespace PortableRegistrator
             // 
             // btnSelectExe
             // 
+            this.btnSelectExe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelectExe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectExe.Location = new System.Drawing.Point(676, 57);
+            this.btnSelectExe.Location = new System.Drawing.Point(712, 207);
             this.btnSelectExe.Name = "btnSelectExe";
             this.btnSelectExe.Size = new System.Drawing.Size(25, 25);
             this.btnSelectExe.TabIndex = 4;
@@ -111,7 +116,7 @@ namespace PortableRegistrator
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 102);
+            this.label2.Location = new System.Drawing.Point(48, 68);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 21);
@@ -121,7 +126,7 @@ namespace PortableRegistrator
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 250);
+            this.label3.Location = new System.Drawing.Point(38, 250);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 21);
@@ -138,15 +143,15 @@ namespace PortableRegistrator
             this.tbxProgramName.TabIndex = 8;
             this.tbxProgramName.TextChanged += new System.EventHandler(this.tbxProgramName_TextChanged);
             // 
-            // label6
+            // labelPortableSuffix
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(386, 250);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 21);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Portable\"";
+            this.labelPortableSuffix.AutoSize = true;
+            this.labelPortableSuffix.Location = new System.Drawing.Point(381, 250);
+            this.labelPortableSuffix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPortableSuffix.Name = "labelPortableSuffix";
+            this.labelPortableSuffix.Size = new System.Drawing.Size(88, 21);
+            this.labelPortableSuffix.TabIndex = 14;
+            this.labelPortableSuffix.Text = "PORTABLE\"";
             // 
             // cbRegisteredPortables
             // 
@@ -155,9 +160,9 @@ namespace PortableRegistrator
             this.cbRegisteredPortables.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRegisteredPortables.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cbRegisteredPortables.FormattingEnabled = true;
-            this.cbRegisteredPortables.Location = new System.Drawing.Point(175, 71);
+            this.cbRegisteredPortables.Location = new System.Drawing.Point(173, 71);
             this.cbRegisteredPortables.Name = "cbRegisteredPortables";
-            this.cbRegisteredPortables.Size = new System.Drawing.Size(392, 29);
+            this.cbRegisteredPortables.Size = new System.Drawing.Size(384, 29);
             this.cbRegisteredPortables.TabIndex = 10;
             this.cbRegisteredPortables.SelectedIndexChanged += new System.EventHandler(this.cbRegisteredPortables_SelectedIndexChanged);
             // 
@@ -166,7 +171,7 @@ namespace PortableRegistrator
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label5.Location = new System.Drawing.Point(13, 75);
+            this.label5.Location = new System.Drawing.Point(5, 75);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(155, 21);
@@ -175,7 +180,8 @@ namespace PortableRegistrator
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.Controls.Add(this.btnUnregister);
             this.panel1.Controls.Add(this.label9);
@@ -183,12 +189,13 @@ namespace PortableRegistrator
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(0, 362);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(713, 128);
+            this.panel1.Size = new System.Drawing.Size(748, 128);
             this.panel1.TabIndex = 17;
             // 
             // btnUnregister
             // 
-            this.btnUnregister.Location = new System.Drawing.Point(578, 68);
+            this.btnUnregister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnregister.Location = new System.Drawing.Point(613, 68);
             this.btnUnregister.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUnregister.Name = "btnUnregister";
             this.btnUnregister.Size = new System.Drawing.Size(124, 34);
@@ -203,7 +210,7 @@ namespace PortableRegistrator
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(168, 23);
+            this.label9.Location = new System.Drawing.Point(170, 24);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(252, 30);
             this.label9.TabIndex = 20;
@@ -233,12 +240,14 @@ namespace PortableRegistrator
             // 
             // tbxPortablePath
             // 
+            this.tbxPortablePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxPortablePath.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxPortablePath.Location = new System.Drawing.Point(175, 57);
+            this.tbxPortablePath.Location = new System.Drawing.Point(173, 207);
             this.tbxPortablePath.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPortablePath.Name = "tbxPortablePath";
             this.tbxPortablePath.ReadOnly = true;
-            this.tbxPortablePath.Size = new System.Drawing.Size(496, 25);
+            this.tbxPortablePath.Size = new System.Drawing.Size(531, 25);
             this.tbxPortablePath.TabIndex = 3;
             this.tbxPortablePath.TextChanged += new System.EventHandler(this.tbxPortablePath_TextChanged);
             // 
@@ -246,7 +255,7 @@ namespace PortableRegistrator
             // 
             this.cbProgramType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProgramType.FormattingEnabled = true;
-            this.cbProgramType.Location = new System.Drawing.Point(175, 99);
+            this.cbProgramType.Location = new System.Drawing.Point(173, 65);
             this.cbProgramType.Name = "cbProgramType";
             this.cbProgramType.Size = new System.Drawing.Size(202, 29);
             this.cbProgramType.TabIndex = 6;
@@ -256,9 +265,9 @@ namespace PortableRegistrator
             // 
             this.lblFileAssociations.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileAssociations.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblFileAssociations.Location = new System.Drawing.Point(327, 137);
+            this.lblFileAssociations.Location = new System.Drawing.Point(311, 103);
             this.lblFileAssociations.Name = "lblFileAssociations";
-            this.lblFileAssociations.Size = new System.Drawing.Size(373, 17);
+            this.lblFileAssociations.Size = new System.Drawing.Size(426, 17);
             this.lblFileAssociations.TabIndex = 23;
             this.lblFileAssociations.Text = "lblFileAssociations";
             this.lblFileAssociations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -268,7 +277,7 @@ namespace PortableRegistrator
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(187, 137);
+            this.label11.Location = new System.Drawing.Point(171, 103);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(102, 17);
             this.label11.TabIndex = 25;
@@ -280,7 +289,7 @@ namespace PortableRegistrator
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label12.Location = new System.Drawing.Point(187, 161);
+            this.label12.Location = new System.Drawing.Point(171, 127);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(106, 17);
             this.label12.TabIndex = 26;
@@ -291,9 +300,9 @@ namespace PortableRegistrator
             // 
             this.lblURLAssociations.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblURLAssociations.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblURLAssociations.Location = new System.Drawing.Point(327, 161);
+            this.lblURLAssociations.Location = new System.Drawing.Point(311, 127);
             this.lblURLAssociations.Name = "lblURLAssociations";
-            this.lblURLAssociations.Size = new System.Drawing.Size(373, 17);
+            this.lblURLAssociations.Size = new System.Drawing.Size(426, 17);
             this.lblURLAssociations.TabIndex = 27;
             this.lblURLAssociations.Text = "lblURLAssociations";
             this.lblURLAssociations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -304,7 +313,8 @@ namespace PortableRegistrator
             // 
             // btnConfig
             // 
-            this.btnConfig.Location = new System.Drawing.Point(623, 13);
+            this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfig.Location = new System.Drawing.Point(658, 13);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(79, 34);
             this.btnConfig.TabIndex = 28;
@@ -315,7 +325,8 @@ namespace PortableRegistrator
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(538, 13);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(515, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(79, 34);
             this.button1.TabIndex = 29;
@@ -328,7 +339,7 @@ namespace PortableRegistrator
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(187, 185);
+            this.label4.Location = new System.Drawing.Point(171, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 17);
             this.label4.TabIndex = 30;
@@ -340,7 +351,7 @@ namespace PortableRegistrator
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(187, 209);
+            this.label10.Location = new System.Drawing.Point(171, 175);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(131, 17);
             this.label10.TabIndex = 31;
@@ -351,9 +362,9 @@ namespace PortableRegistrator
             // 
             this.lblPropertiesParameter.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPropertiesParameter.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPropertiesParameter.Location = new System.Drawing.Point(327, 209);
+            this.lblPropertiesParameter.Location = new System.Drawing.Point(311, 175);
             this.lblPropertiesParameter.Name = "lblPropertiesParameter";
-            this.lblPropertiesParameter.Size = new System.Drawing.Size(373, 17);
+            this.lblPropertiesParameter.Size = new System.Drawing.Size(426, 17);
             this.lblPropertiesParameter.TabIndex = 32;
             this.lblPropertiesParameter.Text = "lblPropertiesParameter";
             this.lblPropertiesParameter.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -362,18 +373,22 @@ namespace PortableRegistrator
             // 
             this.lblOpenParameters.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOpenParameters.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblOpenParameters.Location = new System.Drawing.Point(327, 185);
+            this.lblOpenParameters.Location = new System.Drawing.Point(311, 151);
             this.lblOpenParameters.Name = "lblOpenParameters";
-            this.lblOpenParameters.Size = new System.Drawing.Size(373, 17);
+            this.lblOpenParameters.Size = new System.Drawing.Size(426, 17);
             this.lblOpenParameters.TabIndex = 33;
             this.lblOpenParameters.Text = "lblOpenParameters";
             this.lblOpenParameters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnRemoveAppType);
+            this.panel2.Controls.Add(this.cbRemoveSuffix);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.lblOpenParameters);
-            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.labelPortableSuffix);
             this.panel2.Controls.Add(this.lblPropertiesParameter);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label10);
@@ -392,17 +407,29 @@ namespace PortableRegistrator
             this.panel2.Controls.Add(this.label7);
             this.panel2.Location = new System.Drawing.Point(0, 72);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(713, 292);
+            this.panel2.Size = new System.Drawing.Size(748, 292);
             this.panel2.TabIndex = 34;
+            // 
+            // cbRemoveSuffix
+            // 
+            this.cbRemoveSuffix.AutoSize = true;
+            this.cbRemoveSuffix.Location = new System.Drawing.Point(482, 250);
+            this.cbRemoveSuffix.Name = "cbRemoveSuffix";
+            this.cbRemoveSuffix.Size = new System.Drawing.Size(125, 25);
+            this.cbRemoveSuffix.TabIndex = 34;
+            this.cbRemoveSuffix.Text = "remove Suffix";
+            this.cbRemoveSuffix.UseVisualStyleBackColor = true;
+            this.cbRemoveSuffix.CheckedChanged += new System.EventHandler(this.cbRemoveSuffix_CheckedChanged);
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.llGithub);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Location = new System.Drawing.Point(0, 491);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(713, 45);
+            this.panel3.Size = new System.Drawing.Size(748, 45);
             this.panel3.TabIndex = 35;
             // 
             // llGithub
@@ -441,26 +468,41 @@ namespace PortableRegistrator
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel4.Controls.Add(this.btnAdd);
             this.panel4.Controls.Add(this.label14);
             this.panel4.Controls.Add(this.btnConfig);
             this.panel4.Controls.Add(this.button1);
             this.panel4.Location = new System.Drawing.Point(0, -1);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(713, 60);
+            this.panel4.Size = new System.Drawing.Size(748, 60);
             this.panel4.TabIndex = 36;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(600, 13);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(52, 34);
+            this.btnAdd.TabIndex = 35;
+            this.btnAdd.Text = "ADD";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel5
             // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel5.Location = new System.Drawing.Point(0, 57);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(713, 14);
+            this.panel5.Size = new System.Drawing.Size(748, 14);
             this.panel5.TabIndex = 37;
             // 
             // panel6
             // 
-            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel6.Controls.Add(this.pictureBox1);
             this.panel6.Location = new System.Drawing.Point(0, -1);
             this.panel6.Name = "panel6";
@@ -480,11 +522,21 @@ namespace PortableRegistrator
             this.pictureBox1.TabIndex = 38;
             this.pictureBox1.TabStop = false;
             // 
+            // btnRemoveAppType
+            // 
+            this.btnRemoveAppType.Location = new System.Drawing.Point(376, 64);
+            this.btnRemoveAppType.Name = "btnRemoveAppType";
+            this.btnRemoveAppType.Size = new System.Drawing.Size(31, 31);
+            this.btnRemoveAppType.TabIndex = 35;
+            this.btnRemoveAppType.Text = "❌";
+            this.btnRemoveAppType.UseVisualStyleBackColor = true;
+            this.btnRemoveAppType.Click += new System.EventHandler(this.btnRemoveAppType_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 537);
+            this.ClientSize = new System.Drawing.Size(749, 537);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
@@ -521,7 +573,7 @@ namespace PortableRegistrator
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbxProgramName;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelPortableSuffix;
         private System.Windows.Forms.ComboBox cbRegisteredPortables;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
@@ -552,6 +604,9 @@ namespace PortableRegistrator
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox cbRemoveSuffix;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnRemoveAppType;
     }
 }
 

@@ -1,0 +1,22 @@
+﻿ ___              _         _    _       ___            _        _                _             
+| . \ ___  _ _  _| |_  ___ | |_ | | ___ | . \ ___  ___ <_> ___ _| |_  _ _  ___  _| |_  ___  _ _ 
+|  _// . \| '_>  | |  <_> || . \| |/ ._>|   // ._>/ . || |<_-<  | |  | '_><_> |  | |  / . \| '_>
+|_|  \___/|_|    |_|  <___||___/|_|\___.|_\_\\___.\_. ||_|/__/  |_|  |_|  <___|  |_|  \___/|_|  
+                                                  <___'                                         
+================================================================================================
+                                        RELEASE-NOTES
+================================================================================================
+
+2023-02-17 - v1.1 
+
+- Reset Button is now also reloading the config file
+- Layout: Position of program type and file path selection switched (#4, freddie-o)
+- ADD Button added, to easily add new program-types via gui
+- Delete Button added, to quickly remove program-types via gui
+- Checkbox 'remove Suffix' added, to give extra functionality to experienced users (#8, psorincatalin)
+- AppType 'SumatraPDF' added (#9, paradoxicallist) - one is better, than NONE ;)
+
+
+2022-03-06 - v1.0
+
+- Initial Release

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using PortableRegistrator.Controls;
 using PortableRegistrator.Helper;
 using PortableRegistrator.Models;
 using System;
@@ -21,6 +22,7 @@ namespace PortableRegistrator
         private const string _configFile = "PortableRegistrator.conf";
         private Configuration _config;
         private AppType _selectedAppType;
+        private bool _removePortableSuffix = false;
 
         // CONSTRUCTOR
         public Form1()
@@ -52,6 +54,7 @@ namespace PortableRegistrator
             }
             // Select first item of program type if wanted
             // cbProgramType.SelectedIndex = 0;
+            UpdateProgramTypeInfo();
         }
         private void UpdateProgramTypeInfo()
         {
@@ -84,12 +87,16 @@ namespace PortableRegistrator
             if (!File.Exists(_configFile))
             {
                 _config = Configuration.CreateDefault();
-                XMLSerializer.Serialize<Configuration>(_config, _configFile);
+                SaveConfiguration();
             }
             else
             {
                 _config = XMLSerializer.Deserialize<Configuration>(_configFile);
             }
+        }
+        private void SaveConfiguration()
+        {
+            XMLSerializer.Serialize<Configuration>(_config, _configFile);
         }
         private void DetectPortables()
         {
@@ -117,6 +124,9 @@ namespace PortableRegistrator
         }
         private void Reset()
         {
+            ReadConfiguration();
+            SetProgramTypes();
+
             tbxPortablePath.Text = null;
             cbProgramType.SelectedIndex = -1;
             tbxProgramName.Text = null;
@@ -156,8 +166,16 @@ namespace PortableRegistrator
         }
         private void Register()
         {
-            var errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text + " Portable");
-            DetectPortables();
+            List<string> errors = null;
+
+            if (_removePortableSuffix)
+            {
+                errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text);
+            }
+            else
+            {
+                errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text + " Portable");
+            }
 
             if (errors.Count == 0)
             {
@@ -178,6 +196,8 @@ namespace PortableRegistrator
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            DetectPortables();
         }
         private void CanUnregister()
         {
@@ -230,6 +250,40 @@ namespace PortableRegistrator
             OpenConfig();
 
         }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new DialogAdd())
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _config.AppTypes.Add(dialog.AppType);
+                    SaveConfiguration();
+                    MessageBoxEx.Show($"New Program-Type '{dialog.AppType}' created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SetProgramTypes();
+                }
+            }
+        }
+        private void btnRemoveAppType_Click(object sender, EventArgs e)
+        {
+            if (cbProgramType.SelectedItem != null &&
+                !String.IsNullOrWhiteSpace(cbProgramType.SelectedItem.ToString()))
+            {
+                var progType = cbProgramType.SelectedItem.ToString();
+                DialogResult dialogResult = MessageBoxEx.Show(this,
+                    "Do you really want to permanently delete Program-Type: " + Environment.NewLine + $"'{progType}' ?",
+                    "Delete Program-Type",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var item = _config.AppTypes.FirstOrDefault(a => a.Name == progType);
+                    _config.AppTypes.Remove(item);
+                    SaveConfiguration();
+                    SetProgramTypes();
+                }
+            }
+
+        }
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
@@ -280,6 +334,47 @@ namespace PortableRegistrator
             Process.Start("https://github.com/sil3nc3/PortableRegistrator");
         }
 
+        // EVENTS - PORTABLE Suffix checkbox
+        private void cbRemoveSuffix_CheckedChanged(object sender, EventArgs e)
+        {
+            _removePortableSuffix = cbRemoveSuffix.Checked;
+
+            if (_removePortableSuffix)
+            {
+                DialogResult dialogResult = MessageBoxEx.Show(this,
+                    "This option removes the 'PORTABLE' Suffix from the registration entry." + Environment.NewLine +
+                    "Then PortableRegistrator cannot detect this registry entry anymore! " + Environment.NewLine + Environment.NewLine +
+                    "Just leave this option, if you are a power user!" + Environment.NewLine +
+                    "This is NOT recommended for default use!",
+                    "!!!ATTENTION!!!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    _removePortableSuffix = true;
+
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    _removePortableSuffix = false;
+                }
+            }
+
+            if (_removePortableSuffix) // If it is still checked
+            {
+                labelPortableSuffix.Text = "\"";
+            }
+            else
+            {
+                labelPortableSuffix.Text = "PORTABLE\"";
+                cbRemoveSuffix.Checked = false;
+            }
+
+        }
+
+
         #endregion
+
+
     }
 }
