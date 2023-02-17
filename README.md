@@ -7,7 +7,7 @@ Then this one is for you!
 Easily register any portable app as a default program in Windows.
 This will allow you to directly open weblinks (http/https URLs) with the portable browser of your choice. 
 
-![image](https://user-images.githubusercontent.com/694970/156938629-9d0bb3b4-bd23-4fda-84b4-df909e410f28.png)
+![image](https://user-images.githubusercontent.com/694970/219813566-63165ef5-3290-44c1-9479-7c0bb2ffe792.png)
 
 ### Configuration
 
