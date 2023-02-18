@@ -9,7 +9,7 @@
 
 2023-02-18 - v1.2 (Deskmodder tribute update) >> https://www.deskmodder.de/phpBB3/viewtopic.php?t=27857
 
-- CLI Interface prepared, firt function is to print xml of existing AppTypes (See "PortableRegistrator.exe /?")
+- CLI Interface prepared, first function is to print xml of existing AppTypes (See "PortableRegistrator.exe /?")
 - More AppTypes added (grabbed from Deskmodders Page)
 - Full list of integrated AppTypes:
      - Generic Image-Viewer
