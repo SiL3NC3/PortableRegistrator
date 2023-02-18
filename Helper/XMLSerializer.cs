@@ -10,6 +10,17 @@ namespace PortableRegistrator.Helper
     // https://dotnet-snippets.de/snippet/easy-xml-serializing-and-deserializing/3777
     public static class XMLSerializer
     {
+        public static string Serialize<T>(this T baseType)
+        {
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+
+            using (StringWriter textWriter = new StringWriter())
+            {
+                serializer.Serialize(textWriter, baseType);
+                return textWriter.ToString();
+            }
+        }
+
         public static void Serialize<T>(this T baseType, string filePath)
         {
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));

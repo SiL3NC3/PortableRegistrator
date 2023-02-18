@@ -19,7 +19,6 @@ namespace PortableRegistrator
     public partial class Form1 : Form
     {
         // PRIVATES
-        private const string _configFile = "PortableRegistrator.conf";
         private Configuration _config;
         private AppType _selectedAppType;
         private bool _removePortableSuffix = false;
@@ -30,12 +29,11 @@ namespace PortableRegistrator
             InitializeComponent();
 
             SetProductVersion();
-            ReadConfiguration();
+            _config = Configuration.Load();
             DetectPortables();
             SetProgramTypes();
             CanRegister();
             CanUnregister();
-            UpdateProgramTypeInfo();
         }
 
         #region METHODS
@@ -48,7 +46,7 @@ namespace PortableRegistrator
         private void SetProgramTypes()
         {
             cbProgramType.Items.Clear();
-            foreach (var appType in _config.AppTypes)
+            foreach (var appType in _config.AppTypes.OrderBy(a => a.Name).ToList())
             {
                 cbProgramType.Items.Add(appType);
             }
@@ -82,22 +80,7 @@ namespace PortableRegistrator
                 lblPropertiesParameter.Text = "-";
             }
         }
-        private void ReadConfiguration()
-        {
-            if (!File.Exists(_configFile))
-            {
-                _config = Configuration.CreateDefault();
-                SaveConfiguration();
-            }
-            else
-            {
-                _config = XMLSerializer.Deserialize<Configuration>(_configFile);
-            }
-        }
-        private void SaveConfiguration()
-        {
-            XMLSerializer.Serialize<Configuration>(_config, _configFile);
-        }
+
         private void DetectPortables()
         {
             cbRegisteredPortables.Items.Clear();
@@ -124,7 +107,7 @@ namespace PortableRegistrator
         }
         private void Reset()
         {
-            ReadConfiguration();
+            _config = Configuration.Load();
             SetProgramTypes();
 
             tbxPortablePath.Text = null;
@@ -147,7 +130,7 @@ namespace PortableRegistrator
                 "HINTS",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
-            Process.Start(_configFile);
+            Process.Start(_config.ConfigFile);
         }
 
         private void CanRegister()
@@ -257,7 +240,7 @@ namespace PortableRegistrator
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     _config.AppTypes.Add(dialog.AppType);
-                    SaveConfiguration();
+                    _config.Save();
                     MessageBoxEx.Show($"New Program-Type '{dialog.AppType}' created.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     SetProgramTypes();
                 }
@@ -278,7 +261,7 @@ namespace PortableRegistrator
                 {
                     var item = _config.AppTypes.FirstOrDefault(a => a.Name == progType);
                     _config.AppTypes.Remove(item);
-                    SaveConfiguration();
+                    _config.Save();
                     SetProgramTypes();
                 }
             }

@@ -43,6 +43,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
@@ -59,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLI.cs" />
     <Compile Include="Controls\DialogAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +75,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIConsoleWriter.cs" />
     <Compile Include="Helper\RegistryHelper.cs" />
     <Compile Include="Helper\XMLSerializer.cs" />
     <Compile Include="Controls\MessageBoxEx.cs" />
@@ -122,7 +127,6 @@
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\XMLFile1.xml" />
     <Content Include="ReleaseNotes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -92,6 +92,14 @@ Possibly not every software will work, but give it a shot and share your experie
 You can use the ADD Button to easily add new Program-Types.
 After manual editing the Reset-Button will now also reloads the Configuration file and repopulate the Program-Types.
 
+CLI-SUPPORT:
+------------------------
+
+AppTypes can be printed out from the existing configuration file, by simply giving a string to search for a AppType's name.
+
+Check "PortableRegistrator.exe /?" for more info.
+
+
 Have fun and enjoy.
 
 

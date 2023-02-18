@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PortableRegistrator.Helper;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,26 +10,88 @@ namespace PortableRegistrator.Models
 {
     public class Configuration
     {
+        private const string _configFile = "PortableRegistrator.conf";
+        public string ConfigFile { get { return _configFile; } }
+
         // STATICS
         internal static Configuration CreateDefault()
         {
             var config = new Configuration();
 
-            var browser = new AppType("Web-Browser")
+            // Defaults
+            var browser = new AppType("Generic Web-Browser")
             {
                 //PropertiesParameter = "-preferences",
                 OpenParameters = "-url \"%1\"",
                 FileAssociations = new List<string>() { ".htm", ".html", ".shtml", ".xht", ".xhtml", },
                 URLAssociations = new List<string>() { "http", "https", "ftp", }
             };
+            config.AppTypes.Add(browser);
 
-            var mail = new AppType("Mail-Program")
+            var mail = new AppType("Generic Mail-Program")
             {
                 PropertiesParameter = null,
                 OpenParameters = "\"%1\"",
                 FileAssociations = new List<string>() { ".xpi", ".eml", ".msg", ".ics", ".mbox" },
                 URLAssociations = new List<string>() { "mailto", }
             };
+            config.AppTypes.Add(mail);
+
+            // Deskmodder: https://www.deskmodder.de/phpBB3/viewtopic.php?t=27857
+            var mediaplayer = new AppType("Generic Media-Player")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".m3u8", ".mp4", },
+                //URLAssociations = new List<string>() { "m3u8", "mp4" }   // REMOVED, no making sense to me
+            };
+            config.AppTypes.Add(mediaplayer);
+
+            var excel = new AppType("MS Office - Excel")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".ods", ".xltm", "xltx", "xlt", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(excel);
+
+            var word = new AppType("MS Office - Word")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".doc", ".docx", ".dot", ".dotx", ".dotm", ".odt", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(word);
+
+            var powerpoint = new AppType("MS Office - Powerpoint")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".odp", ".otp", ".pot", ".potm", ".potx", ".pps", "ppsx", "ppt", "pptm", "pptx", "odp", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(powerpoint);
+
+            var winrar = new AppType("Winrar")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".7zip", ".zip", ".rar", ".gz", ".cab", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(winrar);
+
+            var imageViewer = new AppType("Generic Image-Viewer")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".jpg", ".gif", ".bmp", ".png", ".ico", ".jpeg", ".tif" },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(imageViewer);
+
 
             // Committed by psorincatalin
             var vlcPlayer = new AppType("VLC-Player")
@@ -45,6 +109,7 @@ namespace PortableRegistrator.Models
                     ".ogv",".rec",".rm",".rmvb",".rpl",".thp",".tod",".ts",".tts",".vob",".vro",".webm",".wmv",
                     ".xesc",".asx",".b4s",".cue",".ifo",".m3u",".m3u8",".pls",".ram",".sdp",".vlc",".wvx",".xspf"}
             };
+            config.AppTypes.Add(vlcPlayer);
 
             var sumatraPDF = new AppType("SumatraPDF")
             {
@@ -54,11 +119,8 @@ namespace PortableRegistrator.Models
                     ".epub", ".azw", ".mobi", ".fb2", ".fb2z", ".zfb2", ".pdb", ".tcr", ".cbz", ".cbr",
                     ".cbt", ".cb7", ".djv", ".djvu", ".chm", ".xps", ".oxps", ".xod", },
             };
-
-            config.AppTypes.Add(browser);
-            config.AppTypes.Add(mail);
-            config.AppTypes.Add(vlcPlayer);
             config.AppTypes.Add(sumatraPDF);
+
 
             return config;
         }
@@ -72,6 +134,23 @@ namespace PortableRegistrator.Models
             AppTypes = new List<AppType>();
         }
 
+        public static Configuration Load()
+        {
+            if (!File.Exists(_configFile))
+            {
+                var config = Configuration.CreateDefault();
+                config.Save();
+                return config;
+            }
+            else
+            {
+                return XMLSerializer.Deserialize<Configuration>(_configFile);
+            }
+        }
 
+        public void Save()
+        {
+            XMLSerializer.Serialize(this, _configFile);
+        }
     }
 }
