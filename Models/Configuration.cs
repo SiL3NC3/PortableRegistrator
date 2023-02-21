@@ -19,6 +19,20 @@ namespace PortableRegistrator.Models
             var config = new Configuration();
 
             // Defaults
+            // ----------------
+            // Contributors:
+            //   - Holgi (Deskmodder: https://www.deskmodder.de/phpBB3/viewtopic.php?t=27857)
+            //   - psorincatalin
+
+            var mediaplayer = new AppType("Generic Media-Player")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".m3u8", ".mp4", },
+                //URLAssociations = new List<string>() { "m3u8", "mp4" }   // REMOVED, no making sense to me
+            };
+            config.AppTypes.Add(mediaplayer);
+
             var browser = new AppType("Generic Web-Browser")
             {
                 //PropertiesParameter = "-preferences",
@@ -37,63 +51,6 @@ namespace PortableRegistrator.Models
             };
             config.AppTypes.Add(mail);
 
-            // Deskmodder: https://www.deskmodder.de/phpBB3/viewtopic.php?t=27857
-            var mediaplayer = new AppType("Generic Media-Player")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".m3u8", ".mp4", },
-                //URLAssociations = new List<string>() { "m3u8", "mp4" }   // REMOVED, no making sense to me
-            };
-            config.AppTypes.Add(mediaplayer);
-
-            var excel = new AppType("MS Office - Excel")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".ods", ".xltm", "xltx", "xlt", },
-                URLAssociations = new List<string>() { "view", }
-            };
-            config.AppTypes.Add(excel);
-
-            var word = new AppType("MS Office - Word")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".doc", ".docx", ".dot", ".dotx", ".dotm", ".odt", },
-                URLAssociations = new List<string>() { "view", }
-            };
-            config.AppTypes.Add(word);
-
-            var powerpoint = new AppType("MS Office - Powerpoint")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".odp", ".otp", ".pot", ".potm", ".potx", ".pps", "ppsx", "ppt", "pptm", "pptx", "odp", },
-                URLAssociations = new List<string>() { "view", }
-            };
-            config.AppTypes.Add(powerpoint);
-
-            var winrar = new AppType("Winrar")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".7zip", ".zip", ".rar", ".gz", ".cab", },
-                URLAssociations = new List<string>() { "view", }
-            };
-            config.AppTypes.Add(winrar);
-
-            var imageViewer = new AppType("Generic Image-Viewer")
-            {
-                PropertiesParameter = null,
-                OpenParameters = "\"%1\"",
-                FileAssociations = new List<string>() { ".jpg", ".gif", ".bmp", ".png", ".ico", ".jpeg", ".tif" },
-                URLAssociations = new List<string>() { "view", }
-            };
-            config.AppTypes.Add(imageViewer);
-
-
-            // Committed by psorincatalin
             var vlcPlayer = new AppType("VLC-Player")
             {
                 PropertiesParameter = null,
@@ -121,6 +78,59 @@ namespace PortableRegistrator.Models
             };
             config.AppTypes.Add(sumatraPDF);
 
+            var excel = new AppType("MS Office - Excel")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".xls", ".xlsb", ".xlsm", ".xlsx", ".xlt", ".ods", ".xltm", ".xltx", ".xlt", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(excel);
+
+            var word = new AppType("MS Office - Word")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".doc", ".docx", ".dot", ".dotx", ".dotm", ".odt", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(word);
+
+            var powerpoint = new AppType("MS Office - Powerpoint")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".odp", ".otp", ".pot", ".potm", ".potx", ".pps", ".ppsx", ".ppt", ".pptm", ".pptx", ".odp", ".otp", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(powerpoint);
+
+            var winrar = new AppType("Winrar")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".7zip", ".zip", ".rar", ".gz", ".cab", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(winrar);
+
+            var imageViewer = new AppType("Generic Image-Viewer")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".jpg", ".gif", ".bmp", ".png", ".ico", ".jpeg", ".tif", ".tiff", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(imageViewer);
+
+            var notepad = new AppType("Generic Notepad")
+            {
+                PropertiesParameter = null,
+                OpenParameters = "\"%1\"",
+                FileAssociations = new List<string>() { ".txt", ".conf", ".reg", },
+                URLAssociations = new List<string>() { "view", }
+            };
+            config.AppTypes.Add(notepad);
 
             return config;
         }
