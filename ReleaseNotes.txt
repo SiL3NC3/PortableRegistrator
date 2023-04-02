@@ -7,6 +7,13 @@
                                         RELEASE-NOTES
 ================================================================================================
 
+
+2023-04-02 - v1.4
+
+- Added SimpleLogger for figuring out starting problems (issues), post the log files to
+  https://github.com/SiL3NC3/PortableRegistrator/issues
+
+
 2023-02-21 - v1.3
 
 - Added 'Generic Notepad' (based on Holgi's changes >> https://www.deskmodder.de/phpBB3/viewtopic.php?t=27857)

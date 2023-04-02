@@ -74,7 +74,7 @@ namespace PortableRegistrator.Models
                 OpenParameters = "\"%1\"",
                 FileAssociations = new List<string>() {
                     ".epub", ".azw", ".mobi", ".fb2", ".fb2z", ".zfb2", ".pdb", ".tcr", ".cbz", ".cbr",
-                    ".cbt", ".cb7", ".djv", ".djvu", ".chm", ".xps", ".oxps", ".xod", },
+                    ".cbt", ".cb7", ".djv", ".djvu", ".chm", ".xps", ".oxps", ".xod", "pdf" },
             };
             config.AppTypes.Add(sumatraPDF);
 

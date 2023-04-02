@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="GUIConsoleWriter.cs" />
     <Compile Include="Helper\RegistryHelper.cs" />
+    <Compile Include="Helper\SimpleLogger.cs" />
     <Compile Include="Helper\XMLSerializer.cs" />
     <Compile Include="Controls\MessageBoxEx.cs" />
     <Compile Include="Models\AppType.cs" />

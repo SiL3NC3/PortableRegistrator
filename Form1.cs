@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,18 +23,26 @@ namespace PortableRegistrator
         private Configuration _config;
         private AppType _selectedAppType;
         private bool _removePortableSuffix = false;
+        private SimpleLogger _logger = new SimpleLogger();
 
         // CONSTRUCTOR
         public Form1()
         {
             InitializeComponent();
 
-            SetProductVersion();
-            _config = Configuration.Load();
-            DetectPortables();
-            SetProgramTypes();
-            CanRegister();
-            CanUnregister();
+            try
+            {
+                SetProductVersion();
+                _config = Configuration.Load();
+                DetectPortables();
+                SetProgramTypes();
+                CanRegister();
+                CanUnregister();
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+            }
         }
 
         #region METHODS
@@ -107,16 +116,24 @@ namespace PortableRegistrator
         }
         private void Reset()
         {
-            _config = Configuration.Load();
-            SetProgramTypes();
+            try
+            {
+                _config = Configuration.Load();
+                SetProgramTypes();
 
-            tbxPortablePath.Text = null;
-            cbProgramType.SelectedIndex = -1;
-            tbxProgramName.Text = null;
-            cbRegisteredPortables.SelectedIndex = -1;
+                tbxPortablePath.Text = null;
+                cbProgramType.SelectedIndex = -1;
+                tbxProgramName.Text = null;
+                cbRegisteredPortables.SelectedIndex = -1;
 
-            CanRegister();
-            CanUnregister();
+                CanRegister();
+                CanUnregister();
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+            }
+
         }
         private void OpenConfig()
         {
@@ -149,38 +166,46 @@ namespace PortableRegistrator
         }
         private void Register()
         {
-            List<string> errors = null;
+            try
+            {
+                List<string> errors = null;
 
-            if (_removePortableSuffix)
-            {
-                errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text);
+                if (_removePortableSuffix)
+                {
+                    errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text);
+                }
+                else
+                {
+                    errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text + " Portable");
+                }
+
+                if (errors.Count == 0)
+                {
+                    MessageBoxEx.Show(this,
+                        $"{tbxProgramName.Text} successfully registered!{Environment.NewLine}" +
+                        $"Have fun and enjoy. ;)",
+                        "REGISTER",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBoxEx.Show(this,
+                        $"Registration of '{tbxProgramName.Text}' unsuccessful!{Environment.NewLine}" +
+                        $"Errors: {Environment.NewLine}" +
+                        $"{string.Join(Environment.NewLine, errors.ToArray())}",
+                        "REGISTER",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                DetectPortables();
             }
-            else
+            catch (Exception ex)
             {
-                errors = RegistryHelper.Register(_selectedAppType, tbxPortablePath.Text, tbxProgramName.Text + " Portable");
+                ProcessError(ex);
             }
 
-            if (errors.Count == 0)
-            {
-                MessageBoxEx.Show(this,
-                    $"{tbxProgramName.Text} successfully registered!{Environment.NewLine}" +
-                    $"Have fun and enjoy. ;)",
-                    "REGISTER",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBoxEx.Show(this,
-                    $"Registration of '{tbxProgramName.Text}' unsuccessful!{Environment.NewLine}" +
-                    $"Errors: {Environment.NewLine}" +
-                    $"{string.Join(Environment.NewLine, errors.ToArray())}",
-                    "REGISTER",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-            DetectPortables();
         }
         private void CanUnregister()
         {
@@ -195,28 +220,41 @@ namespace PortableRegistrator
         }
         private void Unregister()
         {
-            var errors = RegistryHelper.Unregister(cbRegisteredPortables.Text);
-            DetectPortables();
+            try
+            {
+                var errors = RegistryHelper.Unregister(cbRegisteredPortables.Text);
+                DetectPortables();
 
-            if (errors.Count == 0)
-            {
-                MessageBoxEx.Show(this,
-                    $"{tbxProgramName.Text} got successfully unregistered.",
-                    "UNREGISTER",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (errors.Count == 0)
+                {
+                    MessageBoxEx.Show(this,
+                        $"{tbxProgramName.Text} got successfully unregistered.",
+                        "UNREGISTER",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBoxEx.Show(this,
+                        $"Deleting registration of '{tbxProgramName.Text}' unsuccessful. See Errors: {Environment.NewLine}" +
+                        $"{string.Join(Environment.NewLine, errors.ToArray())}",
+                        "UNREGISTER",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBoxEx.Show(this,
-                    $"Deleting registration of '{tbxProgramName.Text}' unsuccessful. See Errors: {Environment.NewLine}" +
-                    $"{string.Join(Environment.NewLine, errors.ToArray())}",
-                    "UNREGISTER",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                ProcessError(ex);
             }
         }
 
+        private void ProcessError(Exception ex)
+        {
+            var msg = ex.Message + Environment.NewLine + ex.StackTrace;
+            _logger.Error(msg);
+            MessageBox.Show(msg, "An Error occurred :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         #endregion
 
         #region EVENTS
@@ -226,7 +264,6 @@ namespace PortableRegistrator
         {
             SelectExecutable();
             CanRegister();
-
         }
         private void btnConfig_Click(object sender, EventArgs e)
         {
@@ -357,7 +394,6 @@ namespace PortableRegistrator
 
 
         #endregion
-
 
     }
 }
