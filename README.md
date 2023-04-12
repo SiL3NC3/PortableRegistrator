@@ -97,7 +97,7 @@ CLI-SUPPORT:
 
 AppTypes can be printed out from the existing configuration file, by simply giving a string to search for a AppType's name.
 
-Check "PortableRegistrator.exe /?" for more info.
+Check "PortableRegistratorCLI.exe /?" for more info.
 
 
 Have fun and enjoy.
