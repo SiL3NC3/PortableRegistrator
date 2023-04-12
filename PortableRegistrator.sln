@@ -12,8 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BADCD287-1933-435E-AED5-83F01134FA1B}"
 	ProjectSection(SolutionItems) = preProject
 		make_release.bat = make_release.bat
-		PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.ico = PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.ico
-		PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.png = PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.png
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
