@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PortableRegistrator.Helper
+namespace PortableRegistratorCommon.Helper
 {
     // https://dotnet-snippets.de/snippet/easy-xml-serializing-and-deserializing/3777
     public static class XMLSerializer
     {
         public static string Serialize<T>(this T baseType)
         {
-            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T), typeof(T).GetNestedTypes());
 
             using (StringWriter textWriter = new StringWriter())
             {
@@ -23,7 +23,7 @@ namespace PortableRegistrator.Helper
 
         public static void Serialize<T>(this T baseType, string filePath)
         {
-            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T), typeof(T).GetNestedTypes());
 
             using (FileStream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
@@ -33,7 +33,7 @@ namespace PortableRegistrator.Helper
 
         public static T Deserialize<T>(string filename)
         {
-            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(T), typeof(T).GetNestedTypes());
 
             if (!File.Exists(filename))
             {

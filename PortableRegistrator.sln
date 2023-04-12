@@ -1,9 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableRegistrator", "PortableRegistrator.csproj", "{EBF39CB6-DB81-42D4-A9F6-5D1C09582D5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableRegistrator", "PortableRegistrator\PortableRegistrator.csproj", "{EBF39CB6-DB81-42D4-A9F6-5D1C09582D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableRegistratorCLI", "PortableRegistratorCLI\PortableRegistratorCLI.csproj", "{59E1E757-BA3C-48C3-B64D-ECEDDDFD3AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableRegistratorCommon", "PortableRegistratorCommon\PortableRegistratorCommon.csproj", "{A1648ECD-BFEF-43CF-9884-656EBAE5F7DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BADCD287-1933-435E-AED5-83F01134FA1B}"
+	ProjectSection(SolutionItems) = preProject
+		make_release.bat = make_release.bat
+		PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.ico = PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.ico
+		PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.png = PortableRegistrator\Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,14 @@ Global
 		{EBF39CB6-DB81-42D4-A9F6-5D1C09582D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF39CB6-DB81-42D4-A9F6-5D1C09582D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBF39CB6-DB81-42D4-A9F6-5D1C09582D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E1E757-BA3C-48C3-B64D-ECEDDDFD3AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E1E757-BA3C-48C3-B64D-ECEDDDFD3AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E1E757-BA3C-48C3-B64D-ECEDDDFD3AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E1E757-BA3C-48C3-B64D-ECEDDDFD3AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1648ECD-BFEF-43CF-9884-656EBAE5F7DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1648ECD-BFEF-43CF-9884-656EBAE5F7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1648ECD-BFEF-43CF-9884-656EBAE5F7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1648ECD-BFEF-43CF-9884-656EBAE5F7DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

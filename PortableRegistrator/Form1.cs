@@ -1,18 +1,12 @@
-﻿using Microsoft.Win32;
-using PortableRegistrator.Controls;
-using PortableRegistrator.Helper;
-using PortableRegistrator.Models;
+﻿using PortableRegistrator.Controls;
+using PortableRegistratorCommon;
+using PortableRegistratorCommon.Helper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.Configuration;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PortableRegistrator
@@ -23,7 +17,6 @@ namespace PortableRegistrator
         private Configuration _config;
         private AppType _selectedAppType;
         private bool _removePortableSuffix = false;
-        private SimpleLogger _logger = new SimpleLogger();
 
         // CONSTRUCTOR
         public Form1()
@@ -252,7 +245,7 @@ namespace PortableRegistrator
         private void ProcessError(Exception ex)
         {
             var msg = ex.Message + Environment.NewLine + ex.StackTrace;
-            _logger.Error(msg);
+            SimpleLogger.Instance.Error(msg);
             MessageBox.Show(msg, "An Error occurred :(", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion

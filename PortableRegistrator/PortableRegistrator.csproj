@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLI.cs" />
     <Compile Include="Controls\DialogAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,13 +74,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIConsoleWriter.cs" />
-    <Compile Include="Helper\RegistryHelper.cs" />
-    <Compile Include="Helper\SimpleLogger.cs" />
-    <Compile Include="Helper\XMLSerializer.cs" />
     <Compile Include="Controls\MessageBoxEx.cs" />
-    <Compile Include="Models\AppType.cs" />
-    <Compile Include="Models\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\DialogAdd.resx">
@@ -101,7 +94,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="Assets\Default_Config_generated.conf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -125,9 +117,13 @@
   <ItemGroup>
     <None Include="Resources\Wallpaperfx-3d-Bluefx-Desktop-Usb.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Assets\Holgi_Config.xml" />
+    <ProjectReference Include="..\PortableRegistratorCommon\PortableRegistratorCommon.csproj">
+      <Project>{a1648ecd-bfef-43cf-9884-656ebae5f7dc}</Project>
+      <Name>PortableRegistratorCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="ReleaseNotes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -1,14 +1,14 @@
 ﻿using Microsoft.Win32.SafeHandles;
-using PortableRegistrator.Models;
+using PortableRegistratorCommon;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
-using System.Windows.Forms;
 
-namespace PortableRegistrator
+namespace PortableRegistratorCLI
 {
     // https://social.msdn.microsoft.com/Forums/vstudio/en-US/415e37da-21ed-4f3f-acb2-98aef77b5c4a/i-want-to-show-console-output-in-my-cmd-prompt-in-c-winform-application?forum=csharpgeneral
     class CLI
@@ -22,25 +22,25 @@ namespace PortableRegistrator
 
         internal static void Run(string[] args)
         {
-            GUIConsoleWriter.RegisterGUIConsoleWriter();
             Console.WriteLine();
 
             // HACK: Delete first line of CMD output
             // this could be made a free-standing static method for multiple calls
-            ClearCurrentConsoleLine(2);
+            //ClearCurrentConsoleLine(2);
 
             GetOptionsAndParameters(args);
             ProcessOptions();
 
-            //Console.Write(blankline, 0, 80); // this will line-wrap at 80 so use Write()
-            //Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-            SendKeys.SendWait("{ENTER}");
-            Application.Exit();
         }
 
         internal static void GetOptionsAndParameters(string[] args)
         {
-            OptionStr = args[1].ToLower();
+            if (args.Length < 1)
+            {
+                return;
+            }
+
+            OptionStr = args[0].ToLower();
 
             if (OptionStr == "?" || OptionStr == "h" || OptionStr == "/h" || OptionStr == "-h" ||
                 OptionStr == "--help" || OptionStr == "/?" || OptionStr == "-?" || OptionStr == "--?")
@@ -48,11 +48,11 @@ namespace PortableRegistrator
             else if (OptionStr == "c" || OptionStr == "-c" || OptionStr == "/c" || OptionStr == "--config")
                 Option = Options.Configuration;
 
-            if (args.Length == 3)
+            if (args.Length == 2)
             {
-                ParameterName = args[2].ToString();
+                ParameterName = args[1].ToString();
             }
-            else if (args.Length > 3)
+            else if (args.Length > 2)
             {
                 string type = null;
                 string value = null;
@@ -68,17 +68,14 @@ namespace PortableRegistrator
                     }
                     catch (Exception ex)
                     {
-                        //WriteLine(ex.Message);
-
-                        //WriteLine();
+                        SimpleLogger.Instance.Error(ex);
                     }
                 }
             }
         }
         internal static void ProcessOptions()
         {
-            Console.WriteLine("ProcessOptions >> " + Option.ToString());
-            ClearCurrentConsoleLine(1);
+            //ClearCurrentConsoleLine(1);
 
             switch (Option)
             {
@@ -94,26 +91,9 @@ namespace PortableRegistrator
             }
         }
 
-        public static void ClearCurrentConsoleLine(int linesBack = 0)
-        {
-            try
-            {
-                Console.SetCursorPosition(0, Console.CursorTop - linesBack);
-                int currentLineCursor = Console.CursorTop;
-                Console.SetCursorPosition(0, Console.CursorTop);
-                Console.Write(new string(' ', Console.WindowWidth));
-                Console.SetCursorPosition(0, currentLineCursor);
-            }
-            catch (Exception)
-            {
-            }
-
-        }
-
         private static void PrintUnknown()
         {
-            Console.WriteLine();
-            ClearCurrentConsoleLine();
+            //ClearCurrentConsoleLine();
             Console.WriteLine("UKNOWN OPTIONS!" + Environment.NewLine + "Use PortableRegistrator.exe /? ");
         }
 
@@ -139,28 +119,35 @@ namespace PortableRegistrator
         }
         internal static void GetConfigration()
         {
+
+            if (ParameterName == null)
+            {
+                Console.WriteLine("We need Parameters for '--config <AppType-NAME>' option.");
+                return;
+            }
+
             var config = Configuration.Load();
             var items = config.AppTypes.Where(a => a.Name.ToLower().Contains(ParameterName.ToLower())).ToList();
 
             if (items.Count == 0)
             {
-                Console.WriteLine();
-                ClearCurrentConsoleLine();
+                //ClearCurrentConsoleLine();
                 Console.WriteLine("No items found!");
                 return;
             }
 
             foreach (var item in items)
             {
-                var xml = Helper.XMLSerializer.Serialize(item);
+                var xml = PortableRegistratorCommon.Helper.XMLSerializer.Serialize(item);
                 using (StringReader reader = new StringReader(xml))
                 {
-                    Console.WriteLine();
+
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
                         Console.WriteLine(line);
                     }
+                    Console.WriteLine();
                 }
             }
         }

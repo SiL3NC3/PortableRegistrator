@@ -8,6 +8,17 @@
 ================================================================================================
 
 
+2023-04-12 - v1.5
+
+- More error handling added
+- Fixed XMLSerialization error
+  (https://stackoverflow.com/questions/1127431/xmlserializer-giving-filenotfoundexception-at-constructor)
+- Some GUI improvements
+    - Changed Unicode Icon to default "X"... ;)
+    - Changed label for extensions to a scrollable textbox, when extensions are overlapping
+- Separated CLI Interface from GUI (causing issues)
+
+
 2023-04-02 - v1.4
 
 - Added SimpleLogger for figuring out starting problems (issues), post the log files to

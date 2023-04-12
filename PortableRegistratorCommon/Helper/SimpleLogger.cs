@@ -20,8 +20,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+using System;
+
 public class SimpleLogger
 {
+    #region Singleton
+
+    private static readonly SimpleLogger instance = new SimpleLogger();
+
+    // Explicit static constructor to tell C# compiler
+    // not to mark type as beforefieldinit
+    static SimpleLogger()
+    {
+    }
+
+    public static SimpleLogger Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
+    #endregion
+
     private const string FILE_EXT = ".log";
     private readonly object fileLock = new object();
     private readonly string datetimeFormat;
@@ -60,6 +82,15 @@ public class SimpleLogger
     public void Error(string text)
     {
         WriteFormattedLog(LogLevel.ERROR, text);
+    }
+    /// <summary>
+    /// Log an ERROR message
+    /// </summary>
+    /// <param name="text">Message</param>
+    public void Error(Exception ex)
+    {
+        var msg = ex.Message + Environment.NewLine + ex.StackTrace;
+        WriteFormattedLog(LogLevel.ERROR, msg);
     }
 
     /// <summary>

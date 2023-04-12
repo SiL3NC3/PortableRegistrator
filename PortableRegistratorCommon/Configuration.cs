@@ -1,12 +1,11 @@
-﻿using PortableRegistrator.Helper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PortableRegistrator.Models
+namespace PortableRegistratorCommon
 {
     public class Configuration
     {
@@ -74,7 +73,7 @@ namespace PortableRegistrator.Models
                 OpenParameters = "\"%1\"",
                 FileAssociations = new List<string>() {
                     ".epub", ".azw", ".mobi", ".fb2", ".fb2z", ".zfb2", ".pdb", ".tcr", ".cbz", ".cbr",
-                    ".cbt", ".cb7", ".djv", ".djvu", ".chm", ".xps", ".oxps", ".xod", "pdf" },
+                    ".cbt", ".cb7", ".djv", ".djvu", ".chm", ".xps", ".oxps", ".xod", ".pdf" },
             };
             config.AppTypes.Add(sumatraPDF);
 
@@ -146,21 +145,29 @@ namespace PortableRegistrator.Models
 
         public static Configuration Load()
         {
-            if (!File.Exists(_configFile))
+            try
             {
-                var config = Configuration.CreateDefault();
-                config.Save();
-                return config;
+                if (!File.Exists(_configFile))
+                {
+                    var config = Configuration.CreateDefault();
+                    config.Save();
+                    return config;
+                }
+                else
+                {
+                    return Helper.XMLSerializer.Deserialize<Configuration>(_configFile);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return XMLSerializer.Deserialize<Configuration>(_configFile);
+                SimpleLogger.Instance.Error(ex);
+                throw ex;
             }
         }
 
         public void Save()
         {
-            XMLSerializer.Serialize(this, _configFile);
+            Helper.XMLSerializer.Serialize(this, _configFile);
         }
     }
 }
