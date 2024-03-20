@@ -55,7 +55,7 @@ The default available AppType are:
 ```
 
 To be as flexible as possible, you can extend any kind of application within the configuration file.
-For any app specific needs, others than browser or mail, try adding a new "AppType" section there.
+For any app specific needs, other than browser or mail, try adding a new "AppType" section there.
 
 #### Example
 ```
