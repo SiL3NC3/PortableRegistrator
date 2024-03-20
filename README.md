@@ -11,6 +11,7 @@ This will allow you to directly open weblinks (http/https URLs) with the portabl
 
 ### Configuration
 
+#### Default
 On the first start a configuration file is being generated to provide default settings for the AppTypes.
 
 The default available AppType are:
@@ -56,7 +57,7 @@ The default available AppType are:
 To be as flexible as possible, you can extend any kind of application within the configuration file.
 For any app specific needs, others than browser or mail, try adding a new "AppType" section there.
 
-Example:
+#### Example
 ```
 <?xml version="1.0"?>
 <Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -80,10 +81,11 @@ Example:
   </AppTypes>
 </Configuration>
 ```
+#### Steps
 1. Name the new AppType
-2. Set the supported open parameter of the program ("%1" passes the parameter to the portable executable)
+1. Set the supported open parameter of the program (`%1` passes the parameter to the portable executable)
 3. Register all file associations
-4. Register all URL associations, if not needed remove the lines inbetween
+1. Register all URL associations, if not needed remove the lines inbetween
 
 At best copy a full AppType section and edit it to your needs.
 
@@ -97,16 +99,13 @@ CLI-SUPPORT:
 
 AppTypes can be printed out from the existing configuration file, by simply giving a string to search for a AppType's name.
 
-Check "PortableRegistratorCLI.exe /?" for more info.
-
+Check `PortableRegistratorCLI.exe /?` for more info.
 
 Have fun and enjoy.
-
 
 #### CONTRIBUTION:
 Please post your custom configs for implementing more standard apps under issues, so I can add them to the repo.
 Thank you, guys.
-
 
 #### CREDITS:
 
